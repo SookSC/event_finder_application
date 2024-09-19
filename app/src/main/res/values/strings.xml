@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Socially</string>
+    <string name="title_navbar_home">Home</string>
+    <string name="title_navbar_events">Events</string>
+    <string name="title_navbar_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

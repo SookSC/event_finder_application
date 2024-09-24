@@ -1,42 +1,92 @@
 package com.example.socially
 
+import android.Manifest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.PermissionChecker.PERMISSION_DENIED
+import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//private const val ARG_PARAM1 = "param1"
-//private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EventsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EventsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
+    private lateinit var progressBar: ProgressBar
+    private lateinit var locationOffView: TextView
+    private lateinit var errorLayout: LinearLayout
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events, container, false)
+        // Inflate layout to view object
+        val view = inflater.inflate(R.layout.fragment_events, container, false)
+
+        progressBar = view.findViewById(R.id.progress_bar)
+        locationOffView = view.findViewById(R.id.location_off_text_view)
+        errorLayout = view.findViewById(R.id.error_loading_data_layout)
+        recyclerView = view.findViewById(R.id.recycler_view)
+
+        // Display inflated view
+        return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // If location permissions are not granted, request permissions from user
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PERMISSION_DENIED
+            || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PERMISSION_DENIED) {
+
+            // Show educational UI if necessary
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                showEducationalUIForLocationUse(false)
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                showEducationalUIForLocationUse(true)
+            }
+
+            // Request permissions
+            locationPermissionRequest.launch(arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ))
+        }
+    }
+
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        when {
+            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> { loadLocationBasedData() }
+            permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> { loadApproximateLocationBasedData() }
+            else -> { showNoLocationAccessMessage() }
+        }
+    }
+
+    // UI explaining use of user's location before requesting location permission access
+    private fun showEducationalUIForLocationUse(forOnlyFineLocation: Boolean) {
+        // TODO
+    }
+
+    private fun loadLocationBasedData() {
+        // TODO
+    }
+
+    private fun loadApproximateLocationBasedData() {
+        // TODO
+    }
+
+    private fun showNoLocationAccessMessage() {
+        progressBar.visibility = View.GONE
+        locationOffView.visibility = View.VISIBLE
+        errorLayout.visibility = View.GONE
+        recyclerView.visibility = View.GONE
+    }
 //    companion object {
 //        /**
 //         * Use this factory method to create a new instance of

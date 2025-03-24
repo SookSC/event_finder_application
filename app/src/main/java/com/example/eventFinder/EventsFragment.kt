@@ -1,4 +1,4 @@
-package com.example.socially
+package com.example.eventFinder
 
 import android.Manifest
 import android.os.Bundle

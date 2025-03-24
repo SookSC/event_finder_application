@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Socially</string>
+    <string name="app_name">Event Finder</string>
     <string name="title_navbar_home">Home</string>
     <string name="title_navbar_events">Events</string>
     <string name="title_navbar_profile">Profile</string>

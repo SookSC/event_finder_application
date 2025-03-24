@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.socially"
+    namespace = "com.example.eventFinder"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.socially"
+        applicationId = "com.example.eventFinder"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

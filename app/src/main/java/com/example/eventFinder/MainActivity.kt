@@ -1,4 +1,4 @@
-package com.example.socially
+package com.example.eventFinder
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

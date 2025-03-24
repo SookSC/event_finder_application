@@ -6,21 +6,21 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="com.example.socially.HomeFragment"
+        android:name="com.example.eventFinder.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
     </fragment>
 
     <fragment
         android:id="@+id/fragment_events"
-        android:name="com.example.socially.EventsFragment"
+        android:name="com.example.eventFinder.EventsFragment"
         android:label="Events"
         tools:layout="@layout/fragment_events">
     </fragment>
 
     <fragment
         android:id="@+id/fragment_profile"
-        android:name="com.example.socially.ProfileFragment"
+        android:name="com.example.eventFinder.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
     </fragment>

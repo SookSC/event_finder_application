@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
-val eventbriteApiKey = properties["EVENTBRITE_API_KEY"] ?: "MISSING_API_KEY"
+val predictHQApiKey = properties["PREDICTHQ_API_KEY"] ?: "MISSING_API_KEY"
 
 android {
     namespace = "com.example.eventFinder"
@@ -24,7 +24,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "EVENTBRITE_API_KEY", "\"${properties["API_Key"] ?: ""}\"")
+        buildConfigField("String", "PREDICTHQ_API_KEY", "\"${properties["PREDICTHQ_API_KEY"] ?: ""}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -58,6 +58,12 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // Networking
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

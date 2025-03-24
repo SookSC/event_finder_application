@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Socially"
+rootProject.name = "Event Finder"
 include(":app")
  

@@ -7,4 +7,9 @@
     <string name="error_loading_data_message">Oops!\nWe encountered an error while loading the events.\nPlease try again.</string>
     <string name="retry_button_text">Retry</string>
     <string name="sample_item_name">Sample item name</string>
+    <string name="your_location">Your location</string>
+    <string name="default_lat_long">0.0</string>
+    <string name="welcome_message">Welcome to Event Finder!</string>
+    <string name="profile_message">This is your profile</string>
 </resources>
+S

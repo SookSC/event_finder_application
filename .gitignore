@@ -4,17 +4,7 @@
 /local.properties
 /secrets.properties
 
-/.idea/AndroidProjectSystem.xml
-/.idea/caches
-/.idea/deploymentTargetSelector.xml
-/.idea/libraries
-/.idea/modules.xml
-/.idea/runConfigurations.xml
-/.idea/workspace.xmlq
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-/.idea/misc.xml
-/.idea/other.xml
+/.idea/
 
 .DS_Store
 /build

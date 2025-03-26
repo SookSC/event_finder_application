@@ -51,8 +51,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/data_display_layout"
-        android:layout_width="wrap_content"
+        android:id="@+id/location_data_display_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/your_location"
-            android:textSize="24sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:layout_margin="15dp"/>
 
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/default_lat_long"
-            android:textSize="24sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/long_text_view"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/default_lat_long"
-            android:textSize="24sp" />
+            android:textSize="12sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

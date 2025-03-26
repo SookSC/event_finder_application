@@ -15,16 +15,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker.PERMISSION_DENIED
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eventFinder.model.EventResponse
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 class EventsFragment : Fragment() {
 
+    // Events Fragment layout components
     private lateinit var progressBar: ProgressBar
     private lateinit var locationOffView: TextView
     private lateinit var errorLayout: LinearLayout
-    private lateinit var dataDisplayLayout: LinearLayout
+    private lateinit var locationDataLayout: LinearLayout
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var latTextView: TextView
@@ -42,9 +45,24 @@ class EventsFragment : Fragment() {
         progressBar = view.findViewById(R.id.progress_bar)
         locationOffView = view.findViewById(R.id.location_off_text_view)
         errorLayout = view.findViewById(R.id.error_loading_data_layout)
-        dataDisplayLayout = view.findViewById(R.id.data_display_layout)
+        locationDataLayout = view.findViewById(R.id.location_data_display_layout)
+
+        // Show events in recyclerView
+        val dataSet = arrayListOf(
+            EventResponse("", "", "Sports","Hockey Game",
+                "March 26 @ 5PM", "March 26 @ 9PM", arrayListOf(1.234, 5.678)),
+            EventResponse("", "", "Music","R&B Concert",
+                "March 26 @ 5PM", "March 26 @ 9PM", arrayListOf(1.234, 5.678)),
+            EventResponse("", "", "Arts & Crafts","Pottery Painting Workshop",
+                "March 26 @ 5PM", "March 26 @ 9PM", arrayListOf(1.234, 5.678)),
+            EventResponse("", "", "Community","Garbage Cleanup Day",
+                "March 23 @ 12PM", "March 23 @ 6PM", arrayListOf(1.234, 5.678)),
+        )
 
         recyclerView = view.findViewById(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = EventAdapter(requireContext(), dataSet)
+
         latTextView = view.findViewById(R.id.lat_text_view)
         longTextView = view.findViewById(R.id.long_text_view)
 
@@ -96,7 +114,7 @@ class EventsFragment : Fragment() {
         progressBar.visibility = View.GONE
         locationOffView.visibility = View.GONE
         errorLayout.visibility = View.GONE
-        dataDisplayLayout.visibility = View.VISIBLE
+        locationDataLayout.visibility = View.VISIBLE
 
         val locationManager: LocationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -119,7 +137,7 @@ class EventsFragment : Fragment() {
         progressBar.visibility = View.GONE
         locationOffView.visibility = View.VISIBLE
         errorLayout.visibility = View.GONE
-        dataDisplayLayout.visibility = View.GONE
+        locationDataLayout.visibility = View.GONE
     }
 
 }

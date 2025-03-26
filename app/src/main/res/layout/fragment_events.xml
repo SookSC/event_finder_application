@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="5"
-            tools:listitem="@layout/card_view_design" />
+            tools:listitem="@layout/card_event_item" />
     </LinearLayout>
 
 </FrameLayout>

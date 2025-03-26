@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_contraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/eventLocation" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:text="@string/sample_event_location"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_contraintTop_toBottomOf="@id/eventName"
+            app:layout_constraintTop_toBottomOf="@id/eventName"
             app:layout_constraintBottom_toTopOf="@id/eventStart" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:text="@string/sample_event_category"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_contraintTop_toBottomOf="@id/eventName"
+            app:layout_constraintTop_toBottomOf="@id/eventName"
             app:layout_constraintBottom_toTopOf="@id/eventEnd" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:text="@string/sample_event_start"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_contraintTop_toBottomOf="@id/eventName"
+            app:layout_constraintTop_toBottomOf="@id/eventName"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
@@ -59,7 +59,7 @@
             android:text="@string/sample_event_end"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_contraintTop_toBottomOf="@id/eventCategory"
+            app:layout_constraintTop_toBottomOf="@id/eventCategory"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

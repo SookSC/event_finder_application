@@ -98,7 +98,7 @@ class EventsFragment : Fragment() {
         errorLayout.visibility = View.GONE
         dataDisplayLayout.visibility = View.VISIBLE
 
-        var locationManager: LocationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager: LocationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             client.lastLocation.addOnCompleteListener { task ->

@@ -12,4 +12,8 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    val eventService: EventService by lazy {
+        retrofit.create(EventService::class.java)
+    }
 }

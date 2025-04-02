@@ -11,19 +11,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/location_off_text_view"
+    <LinearLayout
+        android:id="@+id/location_off_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:textAlignment="center"
-        android:text="@string/location_access_needed_message"
-        android:layout_margin="15dp"
-        android:drawablePadding="5dp"
-        app:drawableTopCompat="@drawable/ic_location_off"
-        android:visibility="gone" />
+        android:visibility="gone" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/location_access_needed_message"
+            android:layout_margin="15dp"
+            android:drawablePadding="5dp"
+            app:drawableTopCompat="@drawable/ic_location_off" />
+
+        <Button
+            android:id="@+id/enable_location_access_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="@string/enable_location_access"/>
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/error_loading_data_layout"

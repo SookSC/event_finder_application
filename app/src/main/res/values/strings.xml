@@ -15,4 +15,5 @@
     <string name="sample_event_start">January 1, 2025 at 3:00 PM</string>
     <string name="sample_event_end">January 2, 2025 at 7:00 PM</string>
     <string name="sample_event_location">Mountain View, California</string>
+    <string name="enable_location_access">Enable location access</string>
 </resources>

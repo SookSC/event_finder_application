@@ -47,8 +47,11 @@ class EventsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate layout to view object
-        val view = inflater.inflate(R.layout.fragment_events, container, false)
+        return inflater.inflate(R.layout.fragment_events, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         progressBar = view.findViewById(R.id.progress_bar)
         locationOffView = view.findViewById(R.id.location_off_layout)
@@ -57,6 +60,7 @@ class EventsFragment : Fragment() {
         enableLocationButton = view.findViewById(R.id.enable_location_access_button)
 
         // Show events in recyclerView
+        // TODO: Remove hardcoded values and retrieve data from API
         val dataSet = arrayListOf(
             EventResponse("", "", "Sports","Hockey Game",
                 "March 26 @ 5PM", "March 26 @ 9PM", arrayListOf(1.234, 5.678)),
@@ -77,17 +81,14 @@ class EventsFragment : Fragment() {
 
         client = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        // Display inflated view
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val fineLocationAccess = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
         val coarseLocationAccess = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
 
         if (fineLocationAccess == PackageManager.PERMISSION_GRANTED || coarseLocationAccess == PackageManager.PERMISSION_GRANTED) {
             // TODO: If only coarse location access granted, include a button in top bar to turn on fine location access
+            // TODO: Include button for user to choose to refresh their location
+            // TODO: Include option for user to search by city instead of using their current location
+
             // Location access already granted. Show data
             loadLocationBasedData()
         } else {

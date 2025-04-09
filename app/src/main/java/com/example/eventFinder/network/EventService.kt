@@ -7,8 +7,8 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface EventService {
-    @GET("")
-    suspend fun getEvents(
+    @GET("events/")
+    fun getEvents(
         @Header("Authorization") authToken: String,
         @Query("within") within: String
     ): Call<EventResponse>

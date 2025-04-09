@@ -38,14 +38,13 @@
             android:text="@string/enable_location_access"/>
     </LinearLayout>
 
-
-
     <LinearLayout
         android:id="@+id/error_loading_data_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
+        android:padding="16dp"
         android:visibility="gone" >
 
         <TextView
@@ -68,42 +67,50 @@
     <LinearLayout
         android:id="@+id/location_data_display_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:padding="16dp"
+        android:orientation="vertical"
         android:visibility="gone" >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/your_location"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_margin="15dp"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/your_location"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_margin="15dp"/>
 
-        <TextView
-            android:id="@+id/lat_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/default_lat_long"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/lat_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/default_lat_long"
+                android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/long_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/default_lat_long"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/long_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/default_lat_long"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             tools:itemCount="5"
             tools:listitem="@layout/card_event_item" />
     </LinearLayout>
-
 </FrameLayout>

@@ -1,18 +1,17 @@
 package com.example.eventFinder
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eventFinder.model.EventResponse
+import com.example.eventFinder.model.EventItem
 
-class EventAdapter(private val context: Context, private val eventDataSet: ArrayList<EventResponse>):
+class EventAdapter(private var eventDataSet: List<EventItem>):
     RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val eventName: TextView = view.findViewById(R.id.eventName)
+        val eventTitle: TextView = view.findViewById(R.id.eventTitle)
         val eventLocation: TextView = view.findViewById(R.id.eventLocation)
         val eventCategory: TextView = view.findViewById(R.id.eventCategory)
         val eventStart: TextView = view.findViewById(R.id.eventStart)
@@ -25,12 +24,18 @@ class EventAdapter(private val context: Context, private val eventDataSet: Array
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.eventName.text = eventDataSet[position].title
-        viewHolder.eventLocation.text = eventDataSet[position].location.toString() // TODO: Convert to city name
-        viewHolder.eventCategory.text = eventDataSet[position].category
-        viewHolder.eventStart.text = eventDataSet[position].start
-        viewHolder.eventEnd.text = eventDataSet[position].end
+        val event = eventDataSet[position]
+        viewHolder.eventTitle.text = event.title
+        viewHolder.eventLocation.text = event.location.toString() // TODO: Convert to city name
+        viewHolder.eventCategory.text = event.category
+        viewHolder.eventStart.text = event.start
+        viewHolder.eventEnd.text = event.end
     }
 
     override fun getItemCount() = eventDataSet.size
+
+    fun updateEvents(newEvents: List<EventItem>) {
+        eventDataSet = newEvents
+        notifyDataSetChanged()
+    }
 }

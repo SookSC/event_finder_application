@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout.v221)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Networking
     implementation(libs.retrofit)

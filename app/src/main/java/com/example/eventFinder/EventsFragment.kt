@@ -33,7 +33,8 @@ import com.google.android.gms.location.Priority
 
 class EventsFragment : Fragment() {
     private val viewModel: EventsViewModel by viewModels()
-    private val authToken = "Bearer " + BuildConfig.PREDICTHQ_API_KEY
+    private val authTokenPredictHq = "Bearer " + BuildConfig.PREDICTHQ_API_KEY
+    private val authTokenTicketmaster = BuildConfig.TICKETMASTER_API_KEY
 
     private lateinit var progressBar: ProgressBar
     private lateinit var locationOffView: LinearLayout
@@ -79,7 +80,7 @@ class EventsFragment : Fragment() {
 
                 val radius = 5.0 // TODO: Retrieve radius from user input instead of hardcoded value
                 viewModel.setRadius(radius)
-                viewModel.fetchEvents(authToken)
+                viewModel.fetchEvents(authTokenPredictHq)
 
                 showLayout(locationAccessed = true)
             }

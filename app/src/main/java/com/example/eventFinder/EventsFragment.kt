@@ -93,12 +93,8 @@ class EventsFragment : Fragment() {
         val coarseLocationAccess = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
 
         if (fineLocationAccess == PackageManager.PERMISSION_GRANTED || coarseLocationAccess == PackageManager.PERMISSION_GRANTED) {
-            // TODO: If only coarse location access granted, include a button in top bar to turn on fine location access
-            // TODO: Include button for user to choose to refresh their location
-            // TODO: Include option for user to search by city instead of using their current location
-
             // Location access already granted. Show data
-            loadLocationBasedData()
+            loadLocationBasedData(fineLocationAccess == PackageManager.PERMISSION_GRANTED)
         } else {
             showLayout(locationAccessed = false)
 
@@ -122,8 +118,8 @@ class EventsFragment : Fragment() {
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         when {
-            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> { loadLocationBasedData() }
-            permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> { loadApproximateLocationBasedData() }
+            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> { loadLocationBasedData(true) }
+            permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> { loadLocationBasedData(false) }
             else -> {}
         }
     }
@@ -134,7 +130,7 @@ class EventsFragment : Fragment() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun loadLocationBasedData() {
+    private fun loadLocationBasedData(fineLocationGranted: Boolean) {
         progressBar.visibility = View.VISIBLE
         locationOffView.visibility = View.GONE
 
@@ -143,7 +139,7 @@ class EventsFragment : Fragment() {
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             client.lastLocation.addOnSuccessListener { task ->
                 if (task != null) { viewModel.setLocation(task) }
-                else { requestHighAccuracyLocation() }
+                else { requestHighAccuracyLocation(fineLocationGranted)  }
             }.addOnFailureListener { e: Exception ->
                 Toast.makeText(requireContext(), "Unable to get location. Please try again.", Toast.LENGTH_SHORT).show()
                 showLayout(locationAccessed = false)
@@ -152,30 +148,42 @@ class EventsFragment : Fragment() {
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
-    private fun requestHighAccuracyLocation() {
+    private fun requestHighAccuracyLocation(fineLocationGranted: Boolean) {
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
             .setMinUpdateIntervalMillis(5000)
             .build()
-
-        client.requestLocationUpdates(
-            locationRequest,
-            object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult) {
-                    val location = locationResult.lastLocation
-                    if (location != null) {
-                        viewModel.setLocation(location)
-                        client.removeLocationUpdates(this)
-                    } else {
-                        Toast.makeText(requireContext(), "Unable to get location. Please try again.", Toast.LENGTH_SHORT).show()
+        if (fineLocationGranted) {
+            client.requestLocationUpdates(
+                locationRequest,
+                object : LocationCallback() {
+                    override fun onLocationResult(locationResult: LocationResult) {
+                        val location = locationResult.lastLocation
+                        if (location != null) {
+                            Toast.makeText(requireContext(), "Set location", Toast.LENGTH_SHORT).show()
+                            viewModel.setLocation(location)
+                            client.removeLocationUpdates(this)
+                        } else {
+                            Toast.makeText(requireContext(), "Unable to get location. Please try again.", Toast.LENGTH_SHORT).show()
+                        }
                     }
+                },
+                Looper.getMainLooper()
+            )
+        } else {
+            // Only coarse location access granted
+            client.getCurrentLocation(
+                Priority.PRIORITY_BALANCED_POWER_ACCURACY,
+                null
+            ).addOnSuccessListener { location ->
+                if (location != null) {
+                    Toast.makeText(requireContext(), "Found location using coarse location", Toast.LENGTH_SHORT).show()
+                    viewModel.setLocation(location)
+                } else {
+                    Toast.makeText(requireContext(), "Unable to get location. Please try again.", Toast.LENGTH_SHORT).show()
                 }
-            },
-            Looper.getMainLooper()
-        )
-    }
+            }
+        }
 
-    private fun loadApproximateLocationBasedData() {
-        // TODO
     }
 
     private fun showLayout(locationAccessed: Boolean) {

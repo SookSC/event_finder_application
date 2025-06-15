@@ -6,14 +6,15 @@
     <string name="location_access_needed_message">Please enable location access to find events near you.</string>
     <string name="error_loading_data_message">Oops!\nWe encountered an error while loading the events.\nPlease try again.</string>
     <string name="retry_button_text">Retry</string>
-    <string name="sample_event_name">Sample event name</string>
+    <string name="sample_event_title">Sample Event Title</string>
     <string name="your_location">Your location</string>
     <string name="default_lat_long">0.0</string>
     <string name="welcome_message">Welcome to Event Finder!</string>
     <string name="profile_message">This is your profile</string>
-    <string name="sample_event_category">Festivals</string>
-    <string name="sample_event_start">January 1, 2025 at 3:00 PM</string>
+    <string name="sample_event_category">Festival</string>
+    <string name="sample_event_date_time">January 1, 2025 at 3:00 PM</string>
     <string name="sample_event_end">January 2, 2025 at 7:00 PM</string>
     <string name="sample_event_location">Mountain View, California</string>
     <string name="enable_location_access">Enable location access</string>
+    <string name="event_image_desc">Event thumbnail</string>
 </resources>

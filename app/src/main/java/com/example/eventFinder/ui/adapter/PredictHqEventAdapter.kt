@@ -12,11 +12,10 @@ class PredictHqEventAdapter(private var eventDataSet: List<PredictHqEventItem>):
     RecyclerView.Adapter<PredictHqEventAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val eventTitle: TextView = view.findViewById(R.id.eventTitle)
-        val eventLocation: TextView = view.findViewById(R.id.eventLocation)
-        val eventCategory: TextView = view.findViewById(R.id.eventCategory)
-        val eventStart: TextView = view.findViewById(R.id.eventStart)
-        val eventEnd: TextView = view.findViewById(R.id.eventEnd)
+        val eventTitle: TextView = view.findViewById(R.id.tvEventTitle)
+        val eventLocation: TextView = view.findViewById(R.id.tvEventLocation)
+        val eventCategory: TextView = view.findViewById(R.id.tvEventCategory)
+        val eventStart: TextView = view.findViewById(R.id.tvEventDateTime)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +29,6 @@ class PredictHqEventAdapter(private var eventDataSet: List<PredictHqEventItem>):
         viewHolder.eventLocation.text = event.location.toString() // TODO: Convert to city name
         viewHolder.eventCategory.text = event.category
         viewHolder.eventStart.text = event.start
-        viewHolder.eventEnd.text = event.end
     }
 
     override fun getItemCount() = eventDataSet.size

@@ -11,11 +11,10 @@ import com.example.eventFinder.data.model.TicketmasterEventItem
 class TicketmasterEventAdapter(private var eventDataSet: List<TicketmasterEventItem>): RecyclerView.Adapter<TicketmasterEventAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val eventTitle: TextView = view.findViewById(R.id.eventTitle)
-        val eventLocation: TextView = view.findViewById(R.id.eventLocation)
-        val eventCategory: TextView = view.findViewById(R.id.eventCategory)
-        val eventStart: TextView = view.findViewById(R.id.eventStart)
-        val eventEnd: TextView = view.findViewById(R.id.eventEnd)
+        val eventTitle: TextView = view.findViewById(R.id.tvEventTitle)
+        val eventLocation: TextView = view.findViewById(R.id.tvEventLocation)
+        val eventCategory: TextView = view.findViewById(R.id.tvEventCategory)
+        val eventStart: TextView = view.findViewById(R.id.tvEventDateTime)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +29,6 @@ class TicketmasterEventAdapter(private var eventDataSet: List<TicketmasterEventI
         viewHolder.eventLocation.text = location?.city?.name
         viewHolder.eventCategory.text = event.classifications?.first()?.segment?.name
         viewHolder.eventStart.text = event.dates.start.dateTime
-        viewHolder.eventEnd.text = event.dates.end?.dateTime
     }
 
     override fun getItemCount() = eventDataSet.size

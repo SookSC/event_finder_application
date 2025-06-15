@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="RoundedImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
     <!--    <style name="BaseTheme" parent="Base.Theme.EventFinder">-->
 <!--        <item name="android:background">#FFF9F0</item>-->
 <!--        <item name="android:textColor">#663D00</item>-->

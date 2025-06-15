@@ -21,6 +21,7 @@ import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventFinder.viewmodels.EventsViewModel
@@ -46,6 +47,7 @@ class EventsFragment : Fragment() {
     private lateinit var longTextView: TextView
 
     private lateinit var predictHqEventAdapter: PredictHqEventAdapter
+    private lateinit var ticketmasterEventAdapter: TicketmasterEventAdapter
 
     private lateinit var client: FusedLocationProviderClient
 
@@ -68,9 +70,11 @@ class EventsFragment : Fragment() {
         longTextView = view.findViewById(R.id.long_text_view)
 
         predictHqEventAdapter = PredictHqEventAdapter(emptyList())
+        ticketmasterEventAdapter = TicketmasterEventAdapter(emptyList())
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = predictHqEventAdapter
+        val concatAdapter = ConcatAdapter(predictHqEventAdapter, ticketmasterEventAdapter)
+        recyclerView.adapter = concatAdapter
 
         client = LocationServices.getFusedLocationProviderClient(requireContext())
 
@@ -89,6 +93,10 @@ class EventsFragment : Fragment() {
 
         viewModel.predictHqEventsData.observe(viewLifecycleOwner) { eventsResponse ->
             eventsResponse?.let { predictHqEventAdapter.updateEvents(eventsResponse.results) }
+        }
+
+        viewModel.ticketMasterEventsData.observe(viewLifecycleOwner) { eventsResponse ->
+            eventsResponse?.let { ticketmasterEventAdapter.updateEvents(eventsResponse.embedded.ticketMasterEvents) }
         }
 
         val fineLocationAccess = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)

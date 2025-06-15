@@ -16,7 +16,7 @@ val ticketMasterApiKey = properties["TICKETMASTER_API_KEY"] ?: "MISSING_API_KEY"
 
 android {
     namespace = "com.example.eventFinder"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.eventFinder"
@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.recyclerview)
 
     // Networking
     implementation(libs.retrofit)

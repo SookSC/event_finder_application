@@ -12,10 +12,11 @@ plugins {
 }
 
 val predictHQApiKey = properties["PREDICTHQ_API_KEY"] ?: "MISSING_API_KEY"
+val ticketMasterApiKey = properties["TICKETMASTER_API_KEY"] ?: "MISSING_API_KEY"
 
 android {
     namespace = "com.example.eventFinder"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.eventFinder"
@@ -25,6 +26,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "PREDICTHQ_API_KEY", "\"${properties["PREDICTHQ_API_KEY"] ?: ""}\"")
+        buildConfigField("String", "TICKETMASTER_API_KEY", "\"${properties["TICKETMASTER_API_KEY"] ?: ""}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -60,6 +62,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.recyclerview)
 
     // Networking
     implementation(libs.retrofit)

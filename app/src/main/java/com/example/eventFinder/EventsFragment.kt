@@ -21,6 +21,7 @@ import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventFinder.viewmodels.EventsViewModel
@@ -33,7 +34,8 @@ import com.google.android.gms.location.Priority
 
 class EventsFragment : Fragment() {
     private val viewModel: EventsViewModel by viewModels()
-    private val authToken = "Bearer " + BuildConfig.PREDICTHQ_API_KEY
+    private val predictHqAuthToken = "Bearer " + BuildConfig.PREDICTHQ_API_KEY
+    private val ticketMasterAuthToken = BuildConfig.TICKETMASTER_API_KEY
 
     private lateinit var progressBar: ProgressBar
     private lateinit var locationOffView: LinearLayout
@@ -44,7 +46,8 @@ class EventsFragment : Fragment() {
     private lateinit var latTextView: TextView
     private lateinit var longTextView: TextView
 
-    private lateinit var eventAdapter: EventAdapter
+    private lateinit var predictHqEventAdapter: PredictHqEventAdapter
+    private lateinit var ticketmasterEventAdapter: TicketmasterEventAdapter
 
     private lateinit var client: FusedLocationProviderClient
 
@@ -66,9 +69,12 @@ class EventsFragment : Fragment() {
         latTextView = view.findViewById(R.id.lat_text_view)
         longTextView = view.findViewById(R.id.long_text_view)
 
-        eventAdapter = EventAdapter(emptyList())
+        predictHqEventAdapter = PredictHqEventAdapter(emptyList())
+        ticketmasterEventAdapter = TicketmasterEventAdapter(emptyList())
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = eventAdapter
+        val concatAdapter = ConcatAdapter(predictHqEventAdapter, ticketmasterEventAdapter)
+        recyclerView.adapter = concatAdapter
 
         client = LocationServices.getFusedLocationProviderClient(requireContext())
 
@@ -77,16 +83,20 @@ class EventsFragment : Fragment() {
                 latTextView.text = location.latitude.toString()
                 longTextView.text = location.longitude.toString()
 
-                val radius = 5.0 // TODO: Retrieve radius from user input instead of hardcoded value
+                val radius = 5 // TODO: Retrieve radius from user input instead of hardcoded value
                 viewModel.setRadius(radius)
-                viewModel.fetchEvents(authToken)
+                viewModel.fetchEvents(predictHqAuthToken, ticketMasterAuthToken)
 
                 showLayout(locationAccessed = true)
             }
         }
 
-        viewModel.eventsData.observe(viewLifecycleOwner) { eventsResponse ->
-            eventsResponse?.let { eventAdapter.updateEvents(eventsResponse.results) }
+        viewModel.predictHqEventsData.observe(viewLifecycleOwner) { eventsResponse ->
+            eventsResponse?.let { predictHqEventAdapter.updateEvents(eventsResponse.results) }
+        }
+
+        viewModel.ticketMasterEventsData.observe(viewLifecycleOwner) { eventsResponse ->
+            eventsResponse?.let { ticketmasterEventAdapter.updateEvents(eventsResponse.embedded.ticketMasterEvents) }
         }
 
         val fineLocationAccess = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)

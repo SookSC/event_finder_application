@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.eventFinder.network.EventRepository
-import com.example.eventFinder.model.EventResponse
+import com.example.eventFinder.model.PredictHqEventResponse
 
 class EventsViewModel : ViewModel() {
     private val repository = EventRepository()
@@ -17,8 +17,8 @@ class EventsViewModel : ViewModel() {
         _location.value = location
     }
 
-    private val _eventsData = MutableLiveData<EventResponse>()
-    val eventsData: LiveData<EventResponse> get() = _eventsData
+    private val _predictHqEventsData = MutableLiveData<PredictHqEventResponse>()
+    val predictHqEventsData: LiveData<PredictHqEventResponse> get() = _predictHqEventsData
 
     private val _radiusInput = MutableLiveData<Double>()
     val radiusInput: LiveData<Double> get() = _radiusInput
@@ -27,10 +27,10 @@ class EventsViewModel : ViewModel() {
         _radiusInput.value = radius
     }
 
-    fun fetchEvents(authToken: String) {
+    fun fetchEvents(predictHqAuthToken: String) {
         if (radiusInput.value != null && location.value != null) {
-            repository.getEvents(radiusInput.value!!, location.value!!.latitude, location.value!!.longitude, authToken) {
-                _eventsData.value = it
+            repository.getPredictHqEvents(radiusInput.value!!, location.value!!.latitude, location.value!!.longitude, predictHqAuthToken) {
+                _predictHqEventsData.value = it
             }
         }
     }

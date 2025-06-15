@@ -45,7 +45,7 @@ class EventsFragment : Fragment() {
     private lateinit var latTextView: TextView
     private lateinit var longTextView: TextView
 
-    private lateinit var eventAdapter: EventAdapter
+    private lateinit var predictHqEventAdapter: PredictHqEventAdapter
 
     private lateinit var client: FusedLocationProviderClient
 
@@ -67,9 +67,10 @@ class EventsFragment : Fragment() {
         latTextView = view.findViewById(R.id.lat_text_view)
         longTextView = view.findViewById(R.id.long_text_view)
 
-        eventAdapter = EventAdapter(emptyList())
+        predictHqEventAdapter = PredictHqEventAdapter(emptyList())
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = eventAdapter
+        recyclerView.adapter = predictHqEventAdapter
 
         client = LocationServices.getFusedLocationProviderClient(requireContext())
 
@@ -78,16 +79,16 @@ class EventsFragment : Fragment() {
                 latTextView.text = location.latitude.toString()
                 longTextView.text = location.longitude.toString()
 
-                val radius = 5.0 // TODO: Retrieve radius from user input instead of hardcoded value
+                val radius = 5 // TODO: Retrieve radius from user input instead of hardcoded value
                 viewModel.setRadius(radius)
-                viewModel.fetchEvents(predictHqAuthToken)
+                viewModel.fetchEvents(predictHqAuthToken, ticketMasterAuthToken)
 
                 showLayout(locationAccessed = true)
             }
         }
 
-        viewModel.eventsData.observe(viewLifecycleOwner) { eventsResponse ->
-            eventsResponse?.let { eventAdapter.updateEvents(eventsResponse.results) }
+        viewModel.predictHqEventsData.observe(viewLifecycleOwner) { eventsResponse ->
+            eventsResponse?.let { predictHqEventAdapter.updateEvents(eventsResponse.results) }
         }
 
         val fineLocationAccess = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)

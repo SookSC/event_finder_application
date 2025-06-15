@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eventFinder.model.EventItem
+import com.example.eventFinder.model.PredictHqEventItem
 
-class EventAdapter(private var eventDataSet: List<EventItem>):
-    RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+class PredictHqEventAdapter(private var eventDataSet: List<PredictHqEventItem>):
+    RecyclerView.Adapter<PredictHqEventAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val eventTitle: TextView = view.findViewById(R.id.eventTitle)
@@ -34,7 +34,7 @@ class EventAdapter(private var eventDataSet: List<EventItem>):
 
     override fun getItemCount() = eventDataSet.size
 
-    fun updateEvents(newEvents: List<EventItem>) {
+    fun updateEvents(newEvents: List<PredictHqEventItem>) {
         eventDataSet = newEvents
         notifyDataSetChanged()
     }

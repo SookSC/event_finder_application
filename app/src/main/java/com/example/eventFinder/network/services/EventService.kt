@@ -1,7 +1,7 @@
-package com.example.eventFinder.network
+package com.example.eventFinder.network.services
 
-import com.example.eventFinder.model.PredictHqEventResponse
-import com.example.eventFinder.model.TicketmasterEventResponse
+import com.example.eventFinder.data.model.PredictHqEventResponse
+import com.example.eventFinder.data.model.TicketmasterEventResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

@@ -1,4 +1,4 @@
-package com.example.eventFinder.model
+package com.example.eventFinder.data.model
 
 import com.google.gson.annotations.SerializedName
 

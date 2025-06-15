@@ -1,4 +1,4 @@
-package com.example.eventFinder.data.adapter
+package com.example.eventFinder.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventFinder.R
-import com.example.eventFinder.data.model.PredictHqEventItem
+import com.example.eventFinder.data.model.TicketmasterEventItem
 
-class PredictHqEventAdapter(private var eventDataSet: List<PredictHqEventItem>):
-    RecyclerView.Adapter<PredictHqEventAdapter.ViewHolder>() {
+class TicketmasterEventAdapter(private var eventDataSet: List<TicketmasterEventItem>): RecyclerView.Adapter<TicketmasterEventAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val eventTitle: TextView = view.findViewById(R.id.eventTitle)
         val eventLocation: TextView = view.findViewById(R.id.eventLocation)
         val eventCategory: TextView = view.findViewById(R.id.eventCategory)
@@ -26,16 +25,17 @@ class PredictHqEventAdapter(private var eventDataSet: List<PredictHqEventItem>):
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val event = eventDataSet[position]
-        viewHolder.eventTitle.text = event.title
-        viewHolder.eventLocation.text = event.location.toString() // TODO: Convert to city name
-        viewHolder.eventCategory.text = event.category
-        viewHolder.eventStart.text = event.start
-        viewHolder.eventEnd.text = event.end
+        val location = event.embedded?.venues?.first() ?: event.place
+        viewHolder.eventTitle.text = event.name
+        viewHolder.eventLocation.text = location?.city?.name
+        viewHolder.eventCategory.text = event.classifications?.first()?.segment?.name
+        viewHolder.eventStart.text = event.dates.start.dateTime
+        viewHolder.eventEnd.text = event.dates.end?.dateTime
     }
 
     override fun getItemCount() = eventDataSet.size
 
-    fun updateEvents(newEvents: List<PredictHqEventItem>) {
+    fun updateEvents(newEvents: List<TicketmasterEventItem>) {
         eventDataSet = newEvents
         notifyDataSetChanged()
     }

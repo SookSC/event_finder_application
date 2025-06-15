@@ -25,9 +25,9 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventFinder.BuildConfig
-import com.example.eventFinder.data.adapter.PredictHqEventAdapter
+import com.example.eventFinder.ui.adapter.PredictHqEventAdapter
 import com.example.eventFinder.R
-import com.example.eventFinder.data.adapter.TicketmasterEventAdapter
+import com.example.eventFinder.ui.adapter.TicketmasterEventAdapter
 import com.example.eventFinder.viewmodel.EventsViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback

@@ -1,4 +1,4 @@
-package com.example.eventFinder.ui.events
+package com.sookeongcho.eventHub.ui.events
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -24,11 +24,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eventFinder.BuildConfig
-import com.example.eventFinder.ui.adapter.PredictHqEventAdapter
-import com.example.eventFinder.R
-import com.example.eventFinder.ui.adapter.TicketmasterEventAdapter
-import com.example.eventFinder.viewmodel.EventsViewModel
+import com.sookeongcho.eventHub.BuildConfig
+import com.sookeongcho.eventHub.ui.adapter.PredictHqEventAdapter
+import com.sookeongcho.eventHub.R
+import com.sookeongcho.eventHub.ui.adapter.TicketmasterEventAdapter
+import com.sookeongcho.eventHub.viewmodel.EventsViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest

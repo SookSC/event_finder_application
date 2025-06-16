@@ -1,6 +1,6 @@
-package com.example.eventFinder.network
+package com.sookeongcho.eventHub.network
 
-import com.example.eventFinder.network.services.EventService
+import com.sookeongcho.eventHub.network.services.EventService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

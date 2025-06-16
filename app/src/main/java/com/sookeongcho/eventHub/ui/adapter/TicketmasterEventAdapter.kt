@@ -1,12 +1,12 @@
-package com.example.eventFinder.ui.adapter
+package com.sookeongcho.eventHub.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eventFinder.R
-import com.example.eventFinder.data.model.TicketmasterEventItem
+import com.sookeongcho.eventHub.R
+import com.sookeongcho.eventHub.data.model.TicketmasterEventItem
 
 class TicketmasterEventAdapter(private var eventDataSet: List<TicketmasterEventItem>): RecyclerView.Adapter<TicketmasterEventAdapter.ViewHolder>() {
 

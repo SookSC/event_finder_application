@@ -1,7 +1,8 @@
-# Event Finder Application
+# EventHub
 
-An Android application that gathers and displays upcoming events near the user, allowing them to browse, filter and save events.
-
+EventHub is an Android application that brings local events from multiple sources into one place. Instead of searching across different platforms, users can quickly find and save nearby events through a single, intuitive interface.
+This mobile app simplifies event discovery by aggregating data and making it accessible through a clean, easy-to-use experience.
+Built to demonstrate full-cycle Android development, including API integration, state management, and modern UI practices.
 
 ## Setup Instructions
 ### API key setup

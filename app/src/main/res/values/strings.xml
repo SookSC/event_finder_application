@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Event Finder</string>
+    <string name="app_name">EventHub</string>
     <string name="title_navbar_home">Home</string>
     <string name="title_navbar_events">Events</string>
     <string name="title_navbar_profile">Profile</string>
@@ -9,7 +9,7 @@
     <string name="sample_event_title">Sample Event Title</string>
     <string name="your_location">Your location</string>
     <string name="default_lat_long">0.0</string>
-    <string name="welcome_message">Welcome to Event Finder!</string>
+    <string name="welcome_message">Welcome to EventHub!</string>
     <string name="profile_message">This is your profile</string>
     <string name="sample_event_category">Festival</string>
     <string name="sample_event_date_time">January 1, 2025 at 3:00 PM</string>

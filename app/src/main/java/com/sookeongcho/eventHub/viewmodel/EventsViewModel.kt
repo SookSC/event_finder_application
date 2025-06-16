@@ -1,12 +1,12 @@
-package com.example.eventFinder.viewmodel
+package com.sookeongcho.eventHub.viewmodel
 
 import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.eventFinder.data.repository.EventRepository
-import com.example.eventFinder.data.model.PredictHqEventResponse
-import com.example.eventFinder.data.model.TicketmasterEventResponse
+import com.sookeongcho.eventHub.data.repository.EventRepository
+import com.sookeongcho.eventHub.data.model.PredictHqEventResponse
+import com.sookeongcho.eventHub.data.model.TicketmasterEventResponse
 
 class EventsViewModel : ViewModel() {
     private val repository = EventRepository()

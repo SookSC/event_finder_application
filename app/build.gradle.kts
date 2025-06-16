@@ -15,11 +15,11 @@ val predictHQApiKey = properties["PREDICTHQ_API_KEY"] ?: "MISSING_API_KEY"
 val ticketMasterApiKey = properties["TICKETMASTER_API_KEY"] ?: "MISSING_API_KEY"
 
 android {
-    namespace = "com.example.eventFinder"
+    namespace = "com.sookeongcho.eventHub"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.eventFinder"
+        applicationId = "com.sookeongcho.eventHub"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

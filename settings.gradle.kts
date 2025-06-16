@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Event Finder"
+rootProject.name = "EventHub"
 include(":app")
  

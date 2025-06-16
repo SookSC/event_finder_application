@@ -1,4 +1,4 @@
-package com.example.eventFinder
+package com.sookeongcho.eventHub
 
 import org.junit.Test
 

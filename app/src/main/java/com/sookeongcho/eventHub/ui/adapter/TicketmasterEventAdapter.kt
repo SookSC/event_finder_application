@@ -7,6 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sookeongcho.eventHub.R
 import com.sookeongcho.eventHub.data.model.TicketmasterEventItem
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class TicketmasterEventAdapter(private var eventDataSet: List<TicketmasterEventItem>): RecyclerView.Adapter<TicketmasterEventAdapter.ViewHolder>() {
 
@@ -25,10 +28,13 @@ class TicketmasterEventAdapter(private var eventDataSet: List<TicketmasterEventI
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val event = eventDataSet[position]
         val location = event.embedded?.venues?.first() ?: event.place
+        val formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy '•' h:mma", Locale.ENGLISH)
+        val parsedTime = OffsetDateTime.parse(event.dates.start.dateTime, DateTimeFormatter.ISO_DATE_TIME)
+
         viewHolder.eventTitle.text = event.name
         viewHolder.eventLocation.text = location?.city?.name
         viewHolder.eventCategory.text = event.classifications?.first()?.segment?.name
-        viewHolder.eventStart.text = event.dates.start.dateTime
+        viewHolder.eventStart.text = parsedTime.format(formatter)
     }
 
     override fun getItemCount() = eventDataSet.size

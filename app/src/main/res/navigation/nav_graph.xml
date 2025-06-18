@@ -2,20 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/fragment_home">
+    app:startDestination="@id/fragment_discovery">
 
     <fragment
-        android:id="@+id/fragment_home"
-        android:name="com.sookeongcho.eventHub.ui.home.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/fragment_discovery"
+        android:name="com.sookeongcho.eventHub.ui.discovery.DiscoveryFragment"
+        android:label="Discovery"
+        tools:layout="@layout/fragment_discovery">
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_events"
-        android:name="com.sookeongcho.eventHub.ui.events.EventsFragment"
-        android:label="Events"
-        tools:layout="@layout/fragment_events">
+        android:id="@+id/fragment_saved"
+        android:name="com.sookeongcho.eventHub.ui.saved.SavedFragment"
+        android:label="Saved"
+        tools:layout="@layout/fragment_saved">
     </fragment>
 
     <fragment

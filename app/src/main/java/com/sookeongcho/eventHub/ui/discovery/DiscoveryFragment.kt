@@ -1,4 +1,4 @@
-package com.sookeongcho.eventHub.ui.events
+package com.sookeongcho.eventHub.ui.discovery
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -36,7 +36,7 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 
-class EventsFragment : Fragment() {
+class DiscoveryFragment : Fragment() {
     private val viewModel: EventsViewModel by viewModels()
     private val predictHqAuthToken = "Bearer " + BuildConfig.PREDICTHQ_API_KEY
     private val ticketMasterAuthToken = BuildConfig.TICKETMASTER_API_KEY
@@ -59,7 +59,7 @@ class EventsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_events, container, false)
+        return inflater.inflate(R.layout.fragment_discovery, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

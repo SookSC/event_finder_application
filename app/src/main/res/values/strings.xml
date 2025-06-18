@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EventHub</string>
-    <string name="title_navbar_home">Home</string>
-    <string name="title_navbar_events">Events</string>
+    <string name="title_navbar_discovery">Discovery</string>
+    <string name="title_navbar_saved">Saved</string>
     <string name="title_navbar_profile">Profile</string>
     <string name="location_access_needed_message">Please enable location access to find events near you.</string>
     <string name="error_loading_data_message">Oops!\nWe encountered an error while loading the events.\nPlease try again.</string>

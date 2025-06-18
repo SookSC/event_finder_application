@@ -5,6 +5,6 @@
     </style>
 
     <style name="Theme.EventHub" parent="Theme.Material3.DayNight.NoActionBar">
-
+        <item name="android:colorBackground">@color/themeBeige</item>
     </style>
 </resources>

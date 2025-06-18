@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sample_event_category"
             android:textSize="14sp"
-            android:textColor="@color/tan" />
+            android:textColor="@color/caramelBrown" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

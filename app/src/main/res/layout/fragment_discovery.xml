@@ -69,47 +69,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:padding="16dp"
         android:orientation="vertical"
         android:visibility="gone" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="16dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/your_location"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_margin="15dp"/>
-
-            <TextView
-                android:id="@+id/lat_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/default_lat_long"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/long_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/default_lat_long"
-                android:textSize="12sp" />
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="24dp"
             tools:itemCount="5"
             tools:listitem="@layout/card_event_item" />
     </LinearLayout>

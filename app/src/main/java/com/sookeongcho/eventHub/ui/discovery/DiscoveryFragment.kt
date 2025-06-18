@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresPermission
@@ -47,8 +46,6 @@ class DiscoveryFragment : Fragment() {
     private lateinit var locationDataLayout: LinearLayout
     private lateinit var enableLocationButton: Button
     private lateinit var recyclerView: RecyclerView
-    private lateinit var latTextView: TextView
-    private lateinit var longTextView: TextView
 
     private lateinit var predictHqEventAdapter: PredictHqEventAdapter
     private lateinit var ticketmasterEventAdapter: TicketmasterEventAdapter
@@ -70,8 +67,6 @@ class DiscoveryFragment : Fragment() {
         locationDataLayout = view.findViewById(R.id.location_data_display_layout)
         enableLocationButton = view.findViewById(R.id.enable_location_access_button)
         recyclerView = view.findViewById(R.id.recycler_view)
-        latTextView = view.findViewById(R.id.lat_text_view)
-        longTextView = view.findViewById(R.id.long_text_view)
 
         predictHqEventAdapter = PredictHqEventAdapter(emptyList())
         ticketmasterEventAdapter = TicketmasterEventAdapter(emptyList())
@@ -84,9 +79,6 @@ class DiscoveryFragment : Fragment() {
 
         viewModel.location.observe(viewLifecycleOwner) { location ->
             location?.let {
-                latTextView.text = location.latitude.toString()
-                longTextView.text = location.longitude.toString()
-
                 val radius = 5 // TODO: Retrieve radius from user input instead of hardcoded value
                 viewModel.setRadius(radius)
                 viewModel.fetchEvents(predictHqAuthToken, ticketMasterAuthToken)
